@@ -6,12 +6,14 @@ export default function Color() {
     "rgb(0, 255, 0)",
     "rgb(0, 0, 255)",
   ]);
+
   const generateRandomColor = () => {
     const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
       Math.random() * 256
     )}, ${Math.floor(Math.random() * 256)})`;
     setListColors([...listColors, randomColor]);
   };
+
   const removeColor = (index) => {
     const newListColors = listColors.filter((color, i) => i !== index);
     setListColors(newListColors);
