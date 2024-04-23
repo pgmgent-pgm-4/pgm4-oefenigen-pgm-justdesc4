@@ -5,6 +5,7 @@ import SelectCountry from "./SelectCountry";
 export default function Beers() {
   const [country, setCountry] = useState("italy");
   const [beers, setBeers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const countries = [
     {
       name: "Italy",
@@ -25,6 +26,7 @@ export default function Beers() {
   ];
 
   useEffect(() => {
+    setLoading(true);
     const url = `https://beers-list.p.rapidapi.com/beers/${country}`;
     const options = {
       method: "GET",
@@ -35,8 +37,15 @@ export default function Beers() {
     };
     fetch(url, options)
       .then((response) => response.json())
-      .then((data) => setBeers(data));
+      .then((data) => {
+        setBeers(data);
+        setLoading(false);
+      });
   }, [country]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
