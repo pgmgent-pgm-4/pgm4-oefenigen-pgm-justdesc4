@@ -18,7 +18,7 @@ export default function Todolist({ todos }) {
   };
 
   return (
-    <div>
+    <div className="shadow-black">
       <h1>Todo List</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <input

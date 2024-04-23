@@ -1,5 +1,6 @@
 import "./App.css";
 import Todolist from "./components/Todolist";
+import CardFooter from "./components/CardFooter";
 
 function App() {
   const todos = [
@@ -10,9 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Todolist todos={todos} />
-      </header>
+      <Todolist todos={todos} />
+      <CardFooter />
     </div>
   );
 }
