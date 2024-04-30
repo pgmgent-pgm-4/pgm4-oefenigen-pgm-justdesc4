@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Just Do It",
+    "description": "An app that helps you make a to-do list and check off items as you complete them."
+  },
+  {
+    "id": 2,
+    "title": "Studio Clean",
+    "description": "A static website, completely made with the eleventy static site generator."
+  },
+  {
+    "id": 3,
+    "title": "Remake 'Gentse Feesten 2023 website'",
+    "description": "A remake of the Gentse Feesten 2023 website, with HTML/CSS and JavaScript."
+  }
+]
