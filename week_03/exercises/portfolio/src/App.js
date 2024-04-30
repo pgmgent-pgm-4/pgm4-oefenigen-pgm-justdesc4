@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Home, Contact, About, Projects, Resume } from "./pages";
+import { Home, Contact, About, Projects, Project, Resume } from "./pages";
 import Root from "./layouts/Root";
 import { ROUTES } from "./routes/routes";
 
@@ -17,6 +17,7 @@ const router = createBrowserRouter(
       <Route path={ROUTES.about.path} element={<About />} />
       <Route path={ROUTES.contact.path} element={<Contact />} />
       <Route path={ROUTES.projects.path} element={<Projects />} />
+      <Route path={ROUTES.project.path} element={<Project />} />
       <Route path={ROUTES.resume.path} element={<Resume />} />
     </Route>
   )

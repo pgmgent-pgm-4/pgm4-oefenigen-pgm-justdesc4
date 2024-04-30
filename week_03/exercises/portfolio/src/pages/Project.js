@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useParams } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Project() {
   const { id } = useParams();
@@ -8,12 +9,18 @@ export default function Project() {
       .then((response) => response.json())
       .then((data) => setProjects(data));
   }, []);
-  const project = projects.find((project) => project.id === id);
+  const project = projects.find((project) => project.id === Number(id));
 
   return (
     <div>
-      <h1>{project.title}</h1>
-      <p>{project.description}</p>
+      {project ? (
+        <>
+          <h1>{project.title}</h1>
+          <p>{project.description}</p>
+        </>
+      ) : (
+        "Loading..."
+      )}
     </div>
   );
 }
