@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import Root from "./layout/Root";
+import Root from "./layouts/Root";
 import { HomePage, LoginPage } from "./pages";
 import { UserProvider } from "./context/UserContext";
 
