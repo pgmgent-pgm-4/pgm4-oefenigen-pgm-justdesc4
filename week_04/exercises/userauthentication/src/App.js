@@ -1,17 +1,27 @@
-import React from "react";
 import "./App.css";
-import LoginForm from "./components/LoginForm";
-import { UserContextProvider } from "./hooks/User";
-import WelcomePage from "./components/WelcomePage";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
+import Root from "./layout/Root";
+import { HomePage, LoginPage } from "./pages";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Route>
+    )
+  );
   return (
-    <UserContextProvider>
-      <div className="App">
-        <LoginForm />
-        <WelcomePage />
-      </div>
-    </UserContextProvider>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   );
 }
 

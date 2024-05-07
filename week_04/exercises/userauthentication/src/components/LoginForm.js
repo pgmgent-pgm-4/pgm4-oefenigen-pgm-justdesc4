@@ -1,40 +1,54 @@
-import React, { useState, useContext } from "react";
-import { UserContext } from "../hooks/User";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const { setUser } = useContext(UserContext);
-
-  const predefinedUsername = "admin";
-  const predefinedPassword = "password";
-
-  const handleLogin = (e) => {
+export default function LoginForm({ newUser, setNewUser }) {
+  const { user, login } = useContext(UserContext);
+  const [isFormError, setIsFormError] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (username === predefinedUsername && password === predefinedPassword) {
-      setUser({ username });
-    } else {
-      alert("Invalid credentials");
-    }
+    setIsFormError(
+      login({ username: newUser.username, password: newUser.password })
+    );
   };
-
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button type="submit">Login</button>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          value={newUser.username}
+          onChange={(e) => {
+            setNewUser((prev) => {
+              return { ...prev, username: e.target.value };
+            });
+          }}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          value={newUser.password}
+          onChange={(e) => {
+            setNewUser((prev) => {
+              return { ...prev, password: e.target.value };
+            });
+          }}
+        />
+      </div>
+      {isFormError && (
+        <div style={{ color: "red" }}>Credentials not correct</div>
+      )}
+      <div>
+        <button type="submit">submit</button>
+      </div>
     </form>
   );
-};
-
-export default LoginForm;
+}
