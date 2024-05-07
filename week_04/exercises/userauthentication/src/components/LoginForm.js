@@ -14,7 +14,7 @@ export default function LoginForm({ newUser, setNewUser }) {
   };
   useEffect(() => {
     if (user) navigate("/");
-  }, [user]);
+  }, [user, navigate]);
   return (
     <form onSubmit={handleSubmit}>
       <div>
