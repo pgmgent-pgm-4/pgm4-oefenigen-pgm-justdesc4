@@ -7,8 +7,6 @@ function App() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error ...</p>;
-  console.log(data);
-  console.log(error);
 
   return (
     <div className="App">
